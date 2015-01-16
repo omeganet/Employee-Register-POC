@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" ng-config="templating">
+	<head>
+		<meta charset="utf-8">
+		<title>The coolest employee system</title>
+
+		<script>
+			window.require = {
+			  paths: {
+			    'dist': '/build/js/templating',
+			    'deps': '/build/js',
+			    'emp': '/build/js/employees'
+			  },
+			  map: {
+			    '*': {
+			      'templating': 'dist/lib/index',
+			      'di': 'deps/di/index',
+			      'rtts-assert': 'deps/rtts-assert/assert',
+			      'expressionist': 'deps/expressionist/index',
+			      'watchtower': 'deps/watchtower/index'
+			    }
+			  }
+			};
+		</script>
+		<script src="/bower_components/platform/platform.js"></script>
+		<script src="/node_modules/templating/node_modules/es6-shim/es6-shim.js"></script>
+		<script src="/node_modules/templating/node_modules/zone.js/zone.js"></script>
+		<script src="/node_modules/traceur/bin/traceur-runtime.js"></script>
+		<script src="/node_modules/requirejs/require.js" data-main="/build/js/employees/employees.js"></script>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div class="container main">
+			<div class="well">
+				<h1 class="text-center">The Coolest Employee System</h1>
+				<form>
+				  <div class="form-group">
+				    <label for="name">Name</label>
+				    <input type="text" class="form-control" id="name" placeholder="Enter name" bind-value="name" bind-validity="nameValid" bind-validation-message="nameError" required>
+				    <div class="text-danger" ng-if bind-ng-if="submitted && !nameValid.valid">{{nameError}}</div>
+				  </div>
+				  <div class="form-group">
+				    <label for="age">Age</label>
+				    <input type="number" class="form-control" id="age" placeholder="Enter age" bind-value="age" bind-validity="ageValid" bind-validation-message="ageError" required min="22" max="70">
+				    <div class="text-danger" ng-if bind-ng-if="submitted && !ageValid.valid">{{ageError}}</div>
+				  </div>
+				  <button type="button" class="btn btn-primary" on-click="addEmployee(ageValid.valid)">Add</button>
+				</form>
+			</div>
+		
+			<div>
+				<h2>Employee register: {{list.length}}</h2>
+				<ul class="list-group" ng-repeat bind-ng-repeat="list">
+					<li class="list-group-item">
+						<span class="badge">{{row.age}}</span>
+						{{row.name}}
+						<a on-click="removeEmployee(row)">x</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

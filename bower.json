@@ -1,0 +1,22 @@
+{
+  "name": "Employee Register POC",
+  "version": "0.0.0",
+  "homepage": "https://github.com/omeganet/Employee-Register-POC",
+  "authors": [
+    "Boyan Mihaylov <boyan.mihailov@gmail.com>"
+  ],
+  "moduleType": [
+    "es6"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "build"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.2.3",
+    "brick": "brick#~1.0.1"
+  }
+}
